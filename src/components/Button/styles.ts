@@ -11,6 +11,8 @@ export const Container = styled.button<IContainerProps>`
   height: 100%;
   max-height: 40px;
   min-height: 40px;
+  max-width: ${({ maxWidth }) => maxWidth}px;
+  min-width: ${({ minWidth }) => minWidth}px;
 
   cursor: pointer;
 

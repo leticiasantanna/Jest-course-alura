@@ -1,13 +1,11 @@
 import React from "react";
 import "./App.css";
-import Button from "./Button";
-import Form from "./components/Form";
+import Sort from "./pages/Sort";
 
 function App() {
   return (
     <div className="App">
-      <Form />
-      <Button title="oi" />
+      <Sort />
     </div>
   );
 }
