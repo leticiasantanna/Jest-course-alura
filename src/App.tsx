@@ -1,12 +1,19 @@
-import React from "react";
-import "./styles/App.css";
 import Sort from "./pages/Sort";
+import { BrowserRouter } from "react-router-dom";
+import { RecoilRoot } from "recoil";
+import { Route, Routes } from "react-router";
 
 function App() {
   return (
-    <div className="App">
-      <Sort />
-    </div>
+    <>
+      <BrowserRouter>
+        <RecoilRoot>
+          <Routes>
+            <Route element={Sort} />
+          </Routes>
+        </RecoilRoot>
+      </BrowserRouter>
+    </>
   );
 }
 
