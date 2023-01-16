@@ -1,5 +1,5 @@
 import "@testing-library/react";
-import { fireEvent, render, screen } from "../../utils/test-util";
+import { act, fireEvent, render, screen } from "../../utils/test-util";
 import Form from ".";
 import { RecoilRoot } from "recoil";
 import { debug } from "console";
@@ -70,6 +70,41 @@ describe("Form Tests", () => {
     const errorMessage = screen.getByRole("alert");
 
     expect(errorMessage.textContent).toBe("Não é permitido nome duplicado!");
-    console.debug();
+  });
+  it("Mensagem de erro deve sumir após timer definido", () => {
+    jest.useFakeTimers();
+    render(
+      <RecoilRoot>
+        <Form />
+      </RecoilRoot>
+    );
+
+    const input = screen.getByPlaceholderText(
+      "Adicione os nomes dos participantes"
+    );
+    const botao = screen.getByRole("button");
+
+    fireEvent.change(input, {
+      target: {
+        value: "Maria Joana",
+      },
+    });
+    fireEvent.click(botao);
+    fireEvent.change(input, {
+      target: {
+        value: "Maria Joana",
+      },
+    });
+    fireEvent.click(botao);
+
+    let errorMessage = screen.queryByRole("alert");
+
+    expect(errorMessage).toBeInTheDocument();
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    errorMessage = screen.queryByRole("alert");
+    expect(errorMessage).toBeNull();
   });
 });

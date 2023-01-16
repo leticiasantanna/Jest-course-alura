@@ -8,6 +8,9 @@ export const AddParticipants = () => {
   return (participantName: string) => {
     if (list.includes(participantName)) {
       setError("Não é permitido nome duplicado!");
+      setTimeout(() => {
+        setError("");
+      }, 5000);
       return;
     }
     return setList((actualList) => [...actualList, participantName]);
