@@ -1,12 +1,14 @@
 import Button from "../Button";
 
+import * as Styles from "./styles";
+
 const Form = () => {
   return (
     <>
-      <form>
+      <Styles.Container>
         <input type="text" placeholder="Adicione os nomes dos participantes" />
         <Button title="Adicionar" maxWidth={150} />
-      </form>
+      </Styles.Container>
     </>
   );
 };
