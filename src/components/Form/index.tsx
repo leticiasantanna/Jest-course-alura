@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { AddParticipants } from "../../state/hooks/addParticipants";
+import { useErrorMessage } from "../../state/hooks/errorMessage";
 import Button from "../Button";
 
 import * as Styles from "./styles";
@@ -9,6 +10,7 @@ const Form = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const addInList = AddParticipants();
+  const errorMessageText = useErrorMessage();
 
   const addParticipant = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -28,6 +30,7 @@ const Form = () => {
           placeholder="Adicione os nomes dos participantes"
         />
         <Button title="Adicionar" maxWidth={150} disabled={!name} />
+        {errorMessageText && <p role="alert">{errorMessageText}</p>}
       </Styles.Container>
     </>
   );
